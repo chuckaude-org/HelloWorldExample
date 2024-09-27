@@ -22,6 +22,7 @@ jobs:
       run: | 
         pip install -r requirements.txt
         pip show pillow
+        tar -zcf pillow.tar.gz /home/runner/.local/lib/python3.10/site-packages
    # - name: Setup Java JDK
    # uses: actions/setup-java@v4
    #  with:
@@ -35,6 +36,7 @@ jobs:
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
         DETECT_TOOLS: DETECTOR,THREAT_INTEL
+        DETECT_THREATINTEL_SCAN_FILE_PATH: pillow.tar.gz
       with:
         blackduck_url: ${{ vars.BLACKDUCK_URL }}
         blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
