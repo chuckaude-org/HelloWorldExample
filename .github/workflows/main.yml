@@ -19,9 +19,9 @@ jobs:
    #   python-version: '3.9'
    #   cache: 'pip' # caching pip dependencies
     - name: Get Dependencies
-      run: pip install -r requirements.txt
-    - name: Show Pillow Location
-      run: pip show pillow
+      run: | 
+        pip install -r requirements.txt
+        pip show pillow
    # - name: Setup Java JDK
    # uses: actions/setup-java@v4
    #  with:
