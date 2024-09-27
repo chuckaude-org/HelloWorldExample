@@ -32,7 +32,7 @@ jobs:
       uses: synopsys-sig/synopsys-action@v1.12.0
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-        DETECT_TOOLS:DETECTOR,THREAT_INTEL
+        DETECT_TOOLS: DETECTOR,THREAT_INTEL
       with:
         blackduck_url: ${{ vars.BLACKDUCK_URL }}
         blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
