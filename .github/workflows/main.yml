@@ -40,7 +40,7 @@ jobs:
       with:
         blackduck_url: ${{ vars.BLACKDUCK_URL }}
         blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
-        blackduck_scan_failure_severities: 'BLOCKER'
+        blackduck_scan_failure_severities: 'ALL'
         blackduck_fixpr_enabled: true
         blackduck_prComment_enabled: true
         blackduck_reports_sarif_create: true
