@@ -39,12 +39,13 @@ jobs:
       uses: synopsys-sig/synopsys-action@v1.12.0
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-        DETECT_TOOLS: DETECTOR,THREAT_INTEL
-        DETECT_THREATINTEL_SCAN_FILE_PATH: site-packages.tar.gz
+        DETECT_TOOLS: DETECTOR
+   #     DETECT_TOOLS: DETECTOR,THREAT_INTEL
+   #     DETECT_THREATINTEL_SCAN_FILE_PATH: site-packages.tar.gz
       with:
         blackduck_url: ${{ vars.BLACKDUCK_URL }}
         blackduck_token: ${{ secrets.BLACKDUCK_API_TOKEN }}
-        blackduck_scan_failure_severities: 'BLOCKER'
+        blackduck_scan_failure_severities: 'ALL'
         blackduck_fixpr_enabled: true
         blackduck_prComment_enabled: true
         blackduck_reports_sarif_create: true
