@@ -1,5 +1,3 @@
-# example workflow for Black Duck scans using the Synopsys Action
-# https://github.com/marketplace/actions/synopsys-action
 name: blackduck
 on:
   push:
@@ -13,38 +11,19 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v4
-   # - name: Setup Python
-   #   uses: actions/setup-python@v5.2.0
-   #   with:
-   #   python-version: '3.9'
-   #   cache: 'pip' # caching pip dependencies
+    - name: Setup Python
+      uses: actions/setup-python@v5.2.0
+      with:
+        python-version: '3.9'
+        cache: 'pip'
     - name: Get Dependencies
       run: | 
-        # which python3
-        # which pip
-        # python3 -m venv .venv
-        # ls -al 
-        # source .venv/bin/activate
-        echo "pip install -r requirements.txt --break-system-packages"
-        pip install -r requirements.txt --break-system-packages
-        echo "pip show"
-        pip show exp10it
-        pip show gradio
-        tar -zcf site-packages.tar.gz /home/runner/.local/lib/python3.12/site-packages
-        # tar -zcf site-packages.tar.gz /home/runner/work/HelloWorldExample/HelloWorldExample/.venv/lib/python3.12/site-packages
-   # - name: Setup Java JDK
-   # uses: actions/setup-java@v4
-   #  with:
-   #    java-version: 17
-   #    distribution: microsoft
-   #    cache: maven
-   #- name: Maven Build
-   #  run: mvn -B -DskipTests package
+        pip install -r requirements.txt
+        pip list
     - name: Black Duck Scan
-      uses: synopsys-sig/synopsys-action@v1.12.0
+      uses: synopsys-sig/synopsys-action@v1.13.0
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
-   #     DETECT_TOOLS: DETECTOR
         DETECT_TOOLS: DETECTOR,THREAT_INTEL
         DETECT_PYTHON_PATH: /usr/bin/python3
         DETECT_THREATINTEL_SCAN_FILE_PATH: site-packages.tar.gz
@@ -57,10 +36,3 @@ jobs:
         blackduck_reports_sarif_create: true
         blackduck_upload_sarif_report: true
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        # include_diagnostics: true
-#    - name: Save Logs
-#      if: always()
-#      uses: actions/upload-artifact@v4
-#      with:
-#        name: bridge-logs
-#        path: ${{ github.workspace }}/.bridge
