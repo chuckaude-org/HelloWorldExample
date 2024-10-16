@@ -39,6 +39,7 @@ jobs:
    #  run: mvn -B -DskipTests package
     - name: Black Duck Scan
       uses: synopsys-sig/synopsys-action@v1.12.0
+      run: source .venv/bin/activate
       env:
         DETECT_PROJECT_NAME: ${{ github.event.repository.name }}
    #     DETECT_TOOLS: DETECTOR
