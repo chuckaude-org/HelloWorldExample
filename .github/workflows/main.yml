@@ -21,10 +21,10 @@ jobs:
     - name: Get Dependencies
       run: | 
         which python3
-   #      which pip
-   #      python3 -m venv .venv
-   #      ls -al 
-   #      source .venv/bin/activate
+        which pip
+        python3 -m venv .venv
+        ls -al 
+        source .venv/bin/activate
         pip install -r requirements.txt
         pip show exp10it
         pip show gradio
